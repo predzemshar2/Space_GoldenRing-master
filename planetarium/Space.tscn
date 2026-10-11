@@ -1,0 +1,197 @@
+[gd_scene load_steps=24 format=3 uid="uid://w3bahdk72v6k"]
+
+[ext_resource type="Script" path="res://Spase.gd" id="1_tbbf3"]
+[ext_resource type="Texture2D" uid="uid://byugvx6of8u2b" path="res://planetarium/img/Space/Sun.jpeg" id="2_00auf"]
+[ext_resource type="Texture2D" uid="uid://cq7grgkceo41r" path="res://planetarium/img/Space/Mercury.jpeg" id="3_q6bbp"]
+[ext_resource type="Texture2D" uid="uid://ctbn2ds8p6eyc" path="res://planetarium/img/Space/Venus.jpeg" id="4_g4b4k"]
+[ext_resource type="Texture2D" uid="uid://bq6y4h883m0jt" path="res://planetarium/img/Space/Earth.jpeg" id="5_ces3h"]
+[ext_resource type="Texture2D" uid="uid://br68oft6hx5ky" path="res://planetarium/img/Space/Jupiter.jpeg" id="5_kcdc7"]
+[ext_resource type="Texture2D" uid="uid://c6efgdyyecndo" path="res://planetarium/img/Space/Mars.jpeg" id="6_lieqn"]
+[ext_resource type="Texture2D" uid="uid://slesbtpadna0" path="res://planetarium/img/Space/Saturn.jpeg" id="7_87xn0"]
+[ext_resource type="Texture2D" uid="uid://wc6ivnslo4hg" path="res://planetarium/img/Space/Uranus.jpeg" id="8_ytk7f"]
+[ext_resource type="Texture2D" uid="uid://c2ot1e0sd23bq" path="res://planetarium/img/Space/Neptune.jpeg" id="9_brapc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3u6b"]
+albedo_texture = ExtResource("2_00auf")
+emission_enabled = true
+emission = Color(0.952941, 1, 0.301961, 1)
+emission_texture = ExtResource("2_00auf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_30dw1"]
+emission_shape = 2
+emission_sphere_radius = 1.85
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m3f5j"]
+emission_enabled = true
+emission = Color(0.952941, 1, 0.301961, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_soggs"]
+material = SubResource("StandardMaterial3D_m3f5j")
+radial_segments = 16
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwv7x"]
+albedo_texture = ExtResource("3_q6bbp")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_73pka"]
+radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xi3bp"]
+albedo_texture = ExtResource("4_g4b4k")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f77w1"]
+albedo_texture = ExtResource("5_ces3h")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_whbmm"]
+albedo_texture = ExtResource("6_lieqn")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pb8ni"]
+albedo_texture = ExtResource("5_kcdc7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yxcc2"]
+albedo_texture = ExtResource("7_87xn0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dn6um"]
+albedo_texture = ExtResource("8_ytk7f")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u8l35"]
+albedo_texture = ExtResource("9_brapc")
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_tbbf3")
+
+[node name="Sun" type="CSGSphere3D" parent="."]
+material_override = SubResource("StandardMaterial3D_d3u6b")
+radius = 4.0
+radial_segments = 64
+rings = 32
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sun"]
+light_color = Color(1, 0.972549, 1, 1)
+light_energy = 5.0
+omni_range = 10000.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Sun"]
+visible = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_30dw1")
+draw_pass_1 = SubResource("SphereMesh_soggs")
+
+[node name="Mercury" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.0178, 0, 0)
+radius = 2.0
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_rwv7x")
+
+[node name="Area3D" type="Area3D" parent="Mercury"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mercury/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 0, 0)
+shape = SubResource("SphereShape3D_73pka")
+
+[node name="Venus" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.8751, 0, 0)
+radius = 2.0
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_xi3bp")
+
+[node name="Area3D" type="Area3D" parent="Venus"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Venus/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 0, 0)
+shape = SubResource("SphereShape3D_73pka")
+
+[node name="Earth" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.1166, 0, 0)
+radius = 2.0
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_f77w1")
+
+[node name="Area3D" type="Area3D" parent="Earth"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Earth/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 0, 0)
+shape = SubResource("SphereShape3D_73pka")
+
+[node name="Mars" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.7975, 0, 0)
+radius = 2.0
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_whbmm")
+
+[node name="Area3D" type="Area3D" parent="Mars"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mars/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 0, 0)
+shape = SubResource("SphereShape3D_73pka")
+
+[node name="Jupiter" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.9599, 0, 0)
+radius = 5.08187
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_pb8ni")
+
+[node name="Area3D" type="Area3D" parent="Jupiter"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Jupiter/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 0, 0)
+shape = SubResource("SphereShape3D_73pka")
+
+[node name="Saturn" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.3967, 0, 0)
+radius = 3.0
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_yxcc2")
+
+[node name="Area3D" type="Area3D" parent="Saturn"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Saturn/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 0, 0)
+shape = SubResource("SphereShape3D_73pka")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Saturn"]
+transform = Transform3D(1, 0, 0, 0, 0.0433013, -0.5, 0, 0.025, 0.866025, 0, 0, 0)
+radius = 5.0
+
+[node name="Uranus" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.6559, 0, 0)
+radius = 2.0
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_dn6um")
+
+[node name="Area3D" type="Area3D" parent="Uranus"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Uranus/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 0, 0)
+shape = SubResource("SphereShape3D_73pka")
+
+[node name="Neptune" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, -0.00015708, 0, 1, 0, 0.00015708, 0, 1, 101.021, 0, 0)
+radius = 2.0
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_u8l35")
+
+[node name="Area3D" type="Area3D" parent="Neptune"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Neptune/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 0, 0)
+shape = SubResource("SphereShape3D_73pka")
+
+[connection signal="input_event" from="Mercury/Area3D" to="." method="_on_area_3d_mercury_input_event"]
+[connection signal="mouse_entered" from="Mercury/Area3D" to="." method="_on_area_3d_mercury_mouse_entered"]
+[connection signal="mouse_exited" from="Mercury/Area3D" to="." method="_on_area_3d_mercury_mouse_exited"]
+[connection signal="input_event" from="Venus/Area3D" to="." method="_on_area_3d_venus_input_event"]
+[connection signal="mouse_entered" from="Venus/Area3D" to="." method="_on_area_3d_mercury_mouse_entered"]
+[connection signal="mouse_exited" from="Venus/Area3D" to="." method="_on_area_3d_mercury_mouse_exited"]
+[connection signal="input_event" from="Earth/Area3D" to="." method="_on_area_3d_earth_input_event"]
+[connection signal="mouse_entered" from="Earth/Area3D" to="." method="_on_area_3d_earth_mouse_entered"]
+[connection signal="mouse_exited" from="Earth/Area3D" to="." method="_on_area_3d_earth_mouse_exited"]
