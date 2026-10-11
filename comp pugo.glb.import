@@ -1,0 +1,32 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://dyy3cd3tgonxn"
+path="res://.godot/imported/comp pugo.glb-bd55ca4b62991d2012e5d2b1b352d573.scn"
+
+[deps]
+
+source_file="res://comp pugo.glb"
+dest_files=["res://.godot/imported/comp pugo.glb-bd55ca4b62991d2012e5d2b1b352d573.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={}
+gltf/embedded_image_handling=1
